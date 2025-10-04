@@ -8,7 +8,11 @@ const HeroSection = () => {
   const imageRef = useRef(null);
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+
     const imageElement = imageRef.current;
+    if (!imageElement) return;
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -28,7 +32,7 @@ const HeroSection = () => {
   return (
     <section className="pt-32 pb-20 px-4 overflow-hidden bg-white">
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-        <h1 
+        <h1
           className="gradient-title"
           style={{
             fontSize: 'clamp(2.5rem, 8vw, 6rem)',
